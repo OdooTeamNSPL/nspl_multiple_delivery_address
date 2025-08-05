@@ -1,0 +1,22 @@
+<odoo>
+    <template id="report_saleorder_document_inherit_delivery_address" inherit_id="sale.report_saleorder_document">
+
+        <!-- Add Delivery Address column header -->
+        <xpath expr="//thead/tr/th[1]" position="after">
+            <th>Delivery Address</th>
+        </xpath>
+
+        <!-- Add Delivery Address data per line -->
+        <xpath expr="//tbody/tr/td[1]" position="after">
+            <td>
+                <t t-if="line.custom_partner_id">
+                    <span t-esc="line.custom_partner_id.name"/>
+                    <t t-if="line.custom_partner_id.parent_id">
+                        , <span t-esc="line.custom_partner_id.parent_id.name"/>
+                    </t>
+                </t>
+            </td>
+        </xpath>
+
+    </template>
+</odoo>
