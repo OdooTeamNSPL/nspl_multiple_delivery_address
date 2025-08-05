@@ -1,0 +1,31 @@
+<odoo>
+    <template id="report_delivery_document_inherit_delivery_address" inherit_id="stock.report_delivery_document">
+        <!-- Add header column -->
+        <xpath expr="//thead/tr/th[1]" position="after">
+            <th>Delivery To</th>
+        </xpath>
+
+        <!-- Add delivery address cell -->
+        <xpath expr="//tbody" position="inside">
+            <t t-foreach="o.move_ids_without_package" t-as="line">
+                <tr>
+                    <!-- Existing cells (product, qty, etc.) -->
+                    <td>
+                        <t t-if="line.product_id">
+                            <span t-field="line.product_id.display_name"/>
+                        </t>
+                    </td>
+                    <!-- Your custom delivery address column -->
+                    <td>
+                        <t t-if="line.sale_line_id.custom_partner_id">
+                            <span t-esc="line.sale_line_id.custom_partner_id.name"/><br/>
+                            <span t-raw="line.sale_line_id.custom_partner_id._display_address()"/>
+                        </t>
+                    </td>
+                    <!-- Add more <td> here if you want other columns -->
+
+                </tr>
+            </t>
+        </xpath>
+    </template>
+</odoo>
