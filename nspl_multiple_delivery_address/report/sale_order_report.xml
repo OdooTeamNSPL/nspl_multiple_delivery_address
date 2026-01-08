@@ -1,0 +1,26 @@
+<odoo>
+    <template id="report_saleorder_document_inherit_delivery_address" inherit_id="sale.report_saleorder_document">
+
+        <!-- Add Delivery Address column header -->
+        <xpath expr="//table[contains(@class,'o_has_total_table')]//thead/tr/th[1]" position="after">
+            <th name="th_delivery_address">Delivery Address</th>
+        </xpath>
+
+
+        <!-- Add Delivery Address data per line -->
+        <xpath expr="//table[contains(@class,'o_has_total_table')]//tbody//tr[@name='tr_product']/td[@name='td_product_name']"
+               position="after">
+            <td name="td_delivery_address">
+                <t t-if="line.custom_partner_id">
+                    <span t-esc="line.custom_partner_id.name"/>
+                    <t t-if="line.custom_partner_id.parent_id">
+                        ,
+                        <span t-esc="line.custom_partner_id.parent_id.name"/>
+                    </t>
+                </t>
+            </td>
+        </xpath>
+
+
+    </template>
+</odoo>
