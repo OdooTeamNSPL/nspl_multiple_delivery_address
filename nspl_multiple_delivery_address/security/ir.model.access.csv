@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_sale_order_line_custom_partner,access.sale.order.line.custom.partner,base.model_sale_order_line,,1,1,1,1
-access_stock_picking_custom_partner,access.stock.picking.custom.partner,base.model_stock_picking,,1,1,1,1
-access_stock_move_custom_partner,access.stock.move.custom.partner,base.model_stock_move,,1,1,1,1
